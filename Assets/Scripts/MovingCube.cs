@@ -16,7 +16,8 @@ public class MovingCube : MonoBehaviour
 
     internal void Stop()
     {
-        moveSpeed = 0f;
+        //moveSpeed = 0f;
+        CurrentCube.enabled = false;
     }
 
     void Update()
