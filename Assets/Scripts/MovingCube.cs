@@ -1,18 +1,26 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : MonoBehaviour
+public class MovingCube : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public static MovingCube CurrentCube { get; private set; }
+
+    private float moveSpeed = 1f;
+
+    private void OnEnable()
     {
-        
+        CurrentCube = this;
     }
 
-    // Update is called once per frame
+    internal void Stop()
+    {
+        moveSpeed = 0f;
+    }
+
     void Update()
     {
-        
+        transform.position += transform.forward * Time.deltaTime * moveSpeed;
     }
 }
