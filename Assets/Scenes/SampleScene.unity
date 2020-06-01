@@ -246,25 +246,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1469846321 stripped
+--- !u!1 &1593354909
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3407669921229155035, guid: b4076de314bcca14c8dff3546439d71e,
-    type: 3}
-  m_PrefabInstance: {fileID: 2845502201164730184}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1469846322
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1593354911}
+  - component: {fileID: 1593354910}
+  m_Layer: 0
+  m_Name: Spawner Z
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1593354910
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1469846321}
+  m_GameObject: {fileID: 1593354909}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 211eda5a48e76014db37c45a3f418c57, type: 3}
+  m_Script: {fileID: 11500000, guid: 5c93849554518c149b62cc2011cfe042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1
+  cubePrefab: {fileID: 1469846322, guid: b4076de314bcca14c8dff3546439d71e, type: 3}
+--- !u!4 &1593354911
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593354909}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.664, z: -1.427}
+  m_LocalScale: {x: 1, y: 0.1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1676528759
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,7 +319,7 @@ BoxCollider:
   m_GameObject: {fileID: 1676528759}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -371,6 +396,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 0
+--- !u!1 &1869253828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1869253830}
+  - component: {fileID: 1869253829}
+  m_Layer: 0
+  m_Name: Spawner X
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1869253829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869253828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c93849554518c149b62cc2011cfe042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cubePrefab: {fileID: 1469846322, guid: b4076de314bcca14c8dff3546439d71e, type: 3}
+--- !u!4 &1869253830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869253828}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2, y: 0.664, z: 0}
+  m_LocalScale: {x: 1, y: 0.1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2053378685
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,12 +551,12 @@ PrefabInstance:
     - target: {fileID: 4156222412082316840, guid: b4076de314bcca14c8dff3546439d71e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.55
+      value: 0.544
       objectReference: {fileID: 0}
     - target: {fileID: 4156222412082316840, guid: b4076de314bcca14c8dff3546439d71e,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.5
+      value: -1.789
       objectReference: {fileID: 0}
     - target: {fileID: 4156222412082316840, guid: b4076de314bcca14c8dff3546439d71e,
         type: 3}

@@ -4,17 +4,15 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
+     
     void Update()
     {
         if(Input.GetKeyDown("space"))
         {
-            MovingCube.CurrentCube.Stop();
-        }
+            if(MovingCube.CurrentCube != null)
+               MovingCube.CurrentCube.Stop();
 
+            FindObjectOfType<CubeSpawner>().SpawnCube();
+        } 
     }
 }
