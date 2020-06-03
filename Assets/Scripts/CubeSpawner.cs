@@ -7,21 +7,28 @@ public class CubeSpawner : MonoBehaviour
     [SerializeField]
     private MovingCube cubePrefab;
 
+    [SerializeField]
+    private MoveDirection MoveDirection;
+
     public void SpawnCube()
     {
         var cube = Instantiate(cubePrefab);
 
         if (MovingCube.LastCube != null && MovingCube.LastCube.gameObject != GameObject.Find("StartCube"))
         {
-            cube.transform.position = new Vector3(transform.position.x,
+            float x = MoveDirection == MoveDirection.X ? transform.position.x : MovingCube.LastCube.transform.position.x;
+            float z = MoveDirection == MoveDirection.Z ? transform.position.z : MovingCube.LastCube.transform.position.z;
+
+            cube.transform.position = new Vector3(x,
             MovingCube.LastCube.transform.position.y + cubePrefab.transform.localScale.y,
-            transform.position.z);
+            z);
         }
         else
         {
             cube.transform.position = transform.position;
         }
 
+        cube.MoveDirection = MoveDirection;
     }
     private void OnDrawGizmos()
     {
