@@ -17,11 +17,10 @@ public class GameController : MonoBehaviour
     }
     void Update()
     {
-        if(Input.GetKeyDown("space"))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             if(MovingCube.CurrentCube != null)
                MovingCube.CurrentCube.Stop();
-
 
             spawnerIndex = spawnerIndex == 0 ? 1 : 0;
             currentSpawner = spawners[spawnerIndex];

@@ -10,6 +10,10 @@ public class MovingCube : MonoBehaviour
     public static MovingCube LastCube { get; private set; }
     public MoveDirection MoveDirection { get; set; }
 
+    public bool movingForward = true;
+    public bool movingRight = true;
+     
+
     [SerializeField]
     private float moveSpeed = 1f;
 
@@ -18,17 +22,20 @@ public class MovingCube : MonoBehaviour
         if (LastCube == null)
             LastCube = GameObject.Find("StartCube").GetComponent<MovingCube>();
 
-        CurrentCube = this;
-        GetComponent<Renderer>().material.color = GetRandomColor();
+        CurrentCube = this; 
+
+        GetComponent<Renderer>().material.color = GetRandomColor(); 
 
         transform.localScale = new Vector3(LastCube.transform.localScale.x, transform.localScale.y, LastCube.transform.localScale.z);
-    }
 
+        Camera.main.transform.position = CurrentCube.transform.position + new Vector3(100, 100, 100); //CAMERA 
+        Camera.main.transform.LookAt(LastCube.transform.position); 
+    } 
     private Color GetRandomColor()
     {
         return new Color(UnityEngine.Random.Range(0, 1f), UnityEngine.Random.Range(0, 1f), UnityEngine.Random.Range(0, 1f));
-    }
-
+        
+    } 
     internal void Stop()
     {
         CurrentCube.enabled = false;
@@ -40,10 +47,16 @@ public class MovingCube : MonoBehaviour
         {
             LastCube = null;
             CurrentCube = null;
+
             SceneManager.LoadScene(0);  //END GAME 
         }
 
         float direction = consequance > 0 ? 1f : -1f;
+
+        if(CurrentCube == null)
+        {
+            return;
+        } 
         if (MoveDirection == MoveDirection.Z)
         {
             SliceCubeOnZ(consequance, direction);
@@ -54,8 +67,7 @@ public class MovingCube : MonoBehaviour
         }
 
         LastCube = this;
-    }
-
+    } 
     private float GetConsequance()
     {
         if(MoveDirection == MoveDirection.Z)
@@ -66,8 +78,7 @@ public class MovingCube : MonoBehaviour
         {
             return transform.position.x - LastCube.transform.position.x;
         }
-    }
-
+    } 
     private void SliceCubeOnX(float consequance, float direction)
     {
         float newXSize = LastCube.transform.localScale.x - Mathf.Abs(consequance);
@@ -95,8 +106,7 @@ public class MovingCube : MonoBehaviour
         float fallingBlockZPosition = cubeEdge + fallingBlockSize / 2f * direction; 
          
         SpawnDropCube(fallingBlockZPosition, fallingBlockSize);
-    }
-
+    } 
     private void SpawnDropCube(float fallingBlockZPosition, float fallingBlockSize)
     {
         var cube = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -115,18 +125,51 @@ public class MovingCube : MonoBehaviour
         cube.AddComponent<Rigidbody>();
         cube.GetComponent<Renderer>().material.color = GetComponent<Renderer>().material.color;
 
-        Destroy(cube.gameObject, 0.5f);
-
+        Destroy(cube.gameObject, 0.5f); 
     }
     private void Update()
     {
-        if(MoveDirection == MoveDirection.Z)
-        {
-            transform.position += transform.forward * Time.deltaTime * moveSpeed;
+        
+        if (MoveDirection == MoveDirection.Z)
+        { 
+            if(transform.position.z < -2f)
+            {
+                movingForward = true;
+            }
+            else if(transform.position.z >= 2f)
+            {
+                movingForward = false;
+            }
+
+            if(movingForward)
+            {
+                transform.position += transform.forward * Time.deltaTime * moveSpeed;
+            }
+            else
+            {
+                transform.position -= transform.forward * Time.deltaTime * moveSpeed;
+            }
         }
+
         else
         {
-            transform.position += transform.right * Time.deltaTime * moveSpeed;
+            if(transform.position.x < -2f)
+            {
+                movingRight = true;
+            }
+            else if(transform.position.x > 2f)
+            {
+                movingRight = false;
+            }
+
+            if(movingRight)
+            {
+                transform.position += transform.right * Time.deltaTime * moveSpeed;
+            }
+            else
+            {
+                transform.position -= transform.right * Time.deltaTime * moveSpeed;
+            }
         }
     }
 }
